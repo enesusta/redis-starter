@@ -5,17 +5,16 @@ import redis.clients.jedis.JedisPoolConfig;
 
 import java.time.Duration;
 
-public class PoolRedisDataSource implements RedisDataSource<JedisPool> {
+public class PoolRedisInstance implements RedisInstance<JedisPool> {
 
     private final RedisConfiguration redisConfiguration;
 
-    public PoolRedisDataSource(final RedisConfiguration redisConfiguration) {
+    public PoolRedisInstance(final RedisConfiguration redisConfiguration) {
         this.redisConfiguration = redisConfiguration;
     }
 
     @Override
-    public JedisPool getRedisDataSource() {
-
+    public JedisPool getRedisInstance() {
         final JedisPoolConfig poolConfig = new JedisPoolConfig();
         poolConfig.setMaxTotal(128);
         poolConfig.setMaxIdle(128);

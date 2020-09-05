@@ -7,36 +7,35 @@ public class RedisConfiguration {
     private int port;
     private int timeout;
 
-    public RedisConfiguration(final RedisCongurationBuilder builder) {
+    public RedisConfiguration(final Builder builder) {
         this.host = builder.host;
         this.password = builder.password;
         this.port = builder.port;
         this.timeout = builder.timeout;
     }
 
-    public static class RedisCongurationBuilder {
+    public static class Builder {
 
         private String host = "localhost";
         private String password;
         private int port = 6379; // Default port of Redis
         private int timeout = 2000; // default value
 
-        public RedisCongurationBuilder host(final String host) {
+        public Builder(final String password) {
+            this.password = password;
+        }
+
+        public Builder host(final String host) {
             this.host = host;
             return this;
         }
 
-        public RedisCongurationBuilder password(final String password) {
-            this.password = password;
-            return this;
-        }
-
-        public RedisCongurationBuilder port(final int port) {
+        public Builder port(final int port) {
             this.port = port;
             return this;
         }
 
-        public RedisCongurationBuilder timeout(final int timeout) {
+        public Builder timeout(final int timeout) {
             this.timeout = timeout;
             return this;
         }
